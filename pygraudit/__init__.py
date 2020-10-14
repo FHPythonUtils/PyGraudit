@@ -16,7 +16,7 @@ DB_FILES = [file.replace(".db", "") for file in os.listdir(THISDIR + "/signature
 if file.endswith(".db")]
 
 FORMAT_HELP = "Output format. One of ansi, json, markdown, csv. default=ansi"
-DB_HELP = "db to use. One of {DB_FILES}, default=python"
+DB_HELP = f"db to use. One of {DB_FILES}. Default=python"
 
 BANNER = """====================================================================
 __________         ________                       .___.__  __

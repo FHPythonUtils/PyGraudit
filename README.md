@@ -14,6 +14,7 @@
 
 <img src="readme-assets/icons/name.png" alt="Project Icon" width="750">
 
+Python version of graudit by Wireghoul https://github.com/wireghoul/graudit
 
 PyGraudit uses graudit signature sets that allows you to find potential
 security flaws in source code. It's comparable to
@@ -63,7 +64,9 @@ optional arguments:
   -h, --help            show this help message and exit
   --format FORMAT, -f FORMAT
                         Output format. One of ansi, json, markdown, csv. default=ansi
-  --db DB, -d DB        db to use. One of {DB_FILES}, default=python
+  --db DB, -d DB        db to use. One of ['actionscript', 'android', 'asp', 'c', 'cobol', 'default', 'dotnet', 'exec', 'fruit',
+'go', 'ios', 'java', 'js', 'nim', 'perl', 'php', 'python', 'ruby', 'secrets-b64', 'secrets', 'spsqli', 'sql', 'strings', 'xss'].
+Default=python
   -B                    Suppress banner
   -A                    Scan ALL files
   -z                    Suppress colours
