@@ -51,15 +51,10 @@ a list of the options you can run pygraudit -h or see below. The simplest way to
 use PyGraudit is;
 
 ```none
-usage: __main__.py [-h] [--format FORMAT] [--db DB] [-B] [-A] [-z] [-Z] [-l] [--file FILE] path_to_scan
+usage: __main__.py [-h] [--format FORMAT] [--db DB] [-B] [-A] [-z] [-Z] [-l] [--exclude EXCLUDE [EXCLUDE ...]] [--file FILE]
+                   path_to_scan
 
 Python version of graudit by Wireghoul https://github.com/wireghoul/graudit
-
-Formats
-- ansi (for terminal)
-- json
-- markdown
-- csv
 
 positional arguments:
   path_to_scan          Path to scan (.) for current directory
@@ -74,6 +69,8 @@ optional arguments:
   -z                    Suppress colours
   -Z                    High contrast colours
   -l                    Lists databases available
+  --exclude EXCLUDE [EXCLUDE ...], -x EXCLUDE [EXCLUDE ...]
+                        Paths to ignore
   --file FILE, -o FILE  Filename to write to (omit for stdout)
 ```
 

@@ -1,10 +1,4 @@
 """Python version of graudit by Wireghoul https://github.com/wireghoul/graudit
-
-Formats
-- ansi (for terminal)
-- json
-- markdown
-- csv
 """
 import os
 import argparse
@@ -37,7 +31,8 @@ __________         ________                       .___.__  __
 
 def cli():
 	""" cli entry point """
-	parser = argparse.ArgumentParser(description=__doc__ ,formatter_class=argparse.RawTextHelpFormatter)
+	parser = argparse.ArgumentParser(description=__doc__ ,
+	formatter_class=argparse.RawTextHelpFormatter)
 	parser.add_argument("path_to_scan", help="Path to scan (.) for current directory", default=".")
 	parser.add_argument("--format", "-f", help=FORMAT_HELP)
 	parser.add_argument("--db", "-d", help=DB_HELP)
@@ -46,10 +41,12 @@ def cli():
 	parser.add_argument("-z", help="Suppress colours", action="store_true")
 	parser.add_argument("-Z", help="High contrast colours", action="store_true")
 	parser.add_argument("-l", help="Lists databases available", action="store_true")
+	parser.add_argument("--exclude", "-x", nargs="+", default=None, help="Paths to ignore")
 	parser.add_argument("--file", "-o",
 	help="Filename to write to (omit for stdout)")
 
 	args = parser.parse_args()
+
 	# File
 	filename = stdout if args.file is None else open(args.file, "w", encoding="utf-8")
 	# Colour Mode
@@ -78,10 +75,12 @@ def cli():
 		print(FORMAT_HELP)
 		sysexit(1)
 
-	if args.db is None:
-		print(formatt(engine(args.path_to_scan, allFiles=args.A), colourMode=colourMode), file=filename)
-	elif args.db in DB_FILES:
-		print(formatt(engine(args.path_to_scan, args.db, allFiles=args.A), colourMode=colourMode), file=filename)
+	findings = []
+	if args.db is None or args.db in DB_FILES:
+		if args.db is None:
+			args.db = "python"
+		findings = engine(args.path_to_scan, args.db, allFiles=args.A, ignorePaths=args.exclude)
+		print(formatt(findings, colourMode=colourMode), file=filename)
 	else:
 		print(DB_HELP)
 		sysexit(1)

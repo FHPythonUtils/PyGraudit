@@ -75,28 +75,34 @@ def listFiles(startDirectory: str) -> list[str]:
 	return filepaths
 
 
-def filterFiles(startDirectory: str, files: list[str]) -> list[str]:
+def filterFiles(startDirectory: str, files: list[str],
+ignorePaths: Union[list[str], None]=None) -> list[str]:
 	"""Remove files that are non text files and from hidden directories
 
 	Args:
 		startDirectory (str): startDirectory path to start the search
 		files (list[str]): list of files to filter
+		ignorePaths (Union[list[str], None]): list of files to filter
 
 	Returns:
 		list[str]: new list of filtered files
 	"""
+	ignorePaths = ignorePaths or []
+	ignoreRePaths = [re.compile(patt) for patt in ignorePaths]
+	ignoreRePaths += IGNORE_PATHS
 	outFiles = files.copy()
 	for filepath in files:
 		relpath = os.path.relpath(filepath, startDirectory)
 		mimetype = mimetypes.guess_type(filepath)
-		if any([ignore.search(relpath) for ignore in IGNORE_PATHS]):
+		if any([ignore.search(relpath) for ignore in ignoreRePaths]):
 			outFiles.remove(filepath)
 		elif mimetype[0] is None or not str(mimetype[0]).startswith("text/"):
 			outFiles.remove(filepath)
 	return outFiles
 
 
-def engine(startDirectory: str, db: str = "python", allFiles: bool=False) -> list[Finding]:
+def engine(startDirectory: str, db: str = "python", allFiles: bool=False,
+ignorePaths: Union[list[str], None]=None) -> list[Finding]:
 	"""The engine entry point. Using a target startDirectory and a database, produce
 	a list of findings that we can throw into a formatter
 
@@ -104,6 +110,7 @@ def engine(startDirectory: str, db: str = "python", allFiles: bool=False) -> lis
 		startDirectory (str): startDirectory path to start the search
 		db (str, optional): database to use. Defaults to "python".
 		allFiles (bool, optional): no filtering, scan everything
+		ignorePaths (Union[list[str], None]): list of files to filter
 
 	Returns:
 		list[Finding]: list of findings
@@ -111,7 +118,7 @@ def engine(startDirectory: str, db: str = "python", allFiles: bool=False) -> lis
 	findings: list[Finding] = []
 	grepFiles = listFiles(startDirectory)
 	if not allFiles: # Filter the files
-		grepFiles = filterFiles(startDirectory, grepFiles)
+		grepFiles = filterFiles(startDirectory, grepFiles, ignorePaths)
 	tests = open(THISDIR + "/signatures/" + db + ".db", "r",
 	encoding="utf-8").read().splitlines(False)
 	for file in grepFiles:

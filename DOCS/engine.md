@@ -18,7 +18,7 @@ Functions
 ---------
 
     
-`engine(startDirectory: str, db: str = 'python', allFiles: bool = False) ‑> list`
+`engine(startDirectory: str, db: str = 'python', allFiles: bool = False, ignorePaths: Union[list[str], None] = None) ‑> list`
 :   The engine entry point. Using a target startDirectory and a database, produce
     a list of findings that we can throw into a formatter
     
@@ -26,6 +26,7 @@ Functions
             startDirectory (str): startDirectory path to start the search
             db (str, optional): database to use. Defaults to "python".
             allFiles (bool, optional): no filtering, scan everything
+            ignorePaths (Union[list[str], None]): list of files to filter
     
     Returns:
             list[Finding]: list of findings
@@ -42,12 +43,13 @@ Functions
             list[Line]: list of lines
 
     
-`filterFiles(startDirectory: str, files: list[str]) ‑> list`
+`filterFiles(startDirectory: str, files: list[str], ignorePaths: Union[list[str], None] = None) ‑> list`
 :   Remove files that are non text files and from hidden directories
     
     Args:
             startDirectory (str): startDirectory path to start the search
             files (list[str]): list of files to filter
+            ignorePaths (Union[list[str], None]): list of files to filter
     
     Returns:
             list[str]: new list of filtered files
