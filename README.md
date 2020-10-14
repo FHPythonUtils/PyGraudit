@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/github/license/FHPythonUtils/PyGraudit.svg?style=for-the-badge)](/LICENSE.md)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/FHPythonUtils/PyGraudit.svg?style=for-the-badge)](../../commits/master)
 [![Last commit](https://img.shields.io/github/last-commit/FHPythonUtils/PyGraudit.svg?style=for-the-badge)](../../commits/master)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/pygraudit.svg?style=for-the-badge)](https://pypi.org/project/pygraudit/)
+[![PyPI Version](https://img.shields.io/pypi/v/pygraudit.svg?style=for-the-badge)](https://pypi.org/project/pygraudit/)
 
 
 <!-- omit in toc -->
