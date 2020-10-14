@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "pygraudit"
+version = "27.0.0"
+description = "Python version of graudit by Wireghoul https://github.com/wireghoul/graudit"
+authors = ["FredHappyface"]
+classifiers = [
+	"Environment :: Console",
+	"Environment :: MacOS X",
+	"Environment :: Win32 (MS Windows)",
+	"Development Status :: 5 - Production/Stable",
+	"Intended Audience :: Developers",
+	"Intended Audience :: Education",
+	"License :: OSI Approved :: MIT License",
+	"License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+	"Natural Language :: English",
+	"Operating System :: OS Independent",
+	"Programming Language :: Python :: 3",
+	"Programming Language :: Python :: 3.7",
+	"Programming Language :: Python :: 3.8",
+	"Programming Language :: Python :: 3.9",
+	"Programming Language :: Python :: Implementation :: CPython",
+	"Topic :: Security",
+	"Topic :: Software Development :: Libraries :: Python Modules",
+	"Topic :: Utilities"
+]
+homepage = "https://github.com/FHPythonUtils/pygraudit"
+repository = "https://github.com/FHPythonUtils/pygraudit"
+documentation = "https://github.com/FHPythonUtils/pygraudit/blob/master/README.md"
+readme = "README.md"
+
+[tool.poetry.scripts]
+pygraudit = 'pygraudit:cli'
+
+[tool.poetry.dependencies]
+python = "^3.7"
+regex = "^2020.10.11"
+
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

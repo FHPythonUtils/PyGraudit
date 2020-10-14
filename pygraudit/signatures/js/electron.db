@@ -1,0 +1,13 @@
+nodeIntegration
+nodeIntegrationInWorker
+nodeIntegrationInSubFrames
+preload
+devTools
+BrowserWindow.webContents.openDevTools()
+webSecurity
+allowRunningInsecureContent
+contextIsolation
+worldSafeExecuteJavaScript
+additionalArguments
+enableWebSQL
+ELECTRON_RUN_AS_NODE

@@ -1,0 +1,9 @@
+printf[[:space:]]*\([^\,\'\"]+\)\;
+snprintf[[:space:]]*\([^\,]+\,[[:space:]]*sizeof\(.*\%s
+scanf[[:space:]]*\([^\,]+\%s[^\\,]+\,[^\,]+\)\;
+strncpy[[:space:]]*\([^\,]+\,[[:space:]]*sizeof\(
+memcpy[[:space:]]*\([^\,]+\,[^\,]+\,[[:space:]]*sizeof\(
+[[:space:]]gets[[:space:]]*\(
+exec(ve|l|lp|le|v)[[:space:]]*\(
+system[[:space:]]*\(.*\)\;
+(strc(at|py)|memcpy|sprintf|sscanf)[[:space:]]*\(.*argv
