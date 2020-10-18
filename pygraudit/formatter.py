@@ -183,16 +183,16 @@ colourMode: int = 0) -> str:
 	"""
 	out = {
 	"version": "2.1.0",
-	"$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/cos02/schemas/sarif-schema-2.1.0.json",
+	"$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
 	"runs": [{
 	"tool": {"driver": {
 		"name": "PyGraudit",
 		"informationUri": "https://github.com/FHPythonUtils/PyGraudit",
 		"version": "27.*", }},
 	"results": [{
-		"ruleId": finding["id"], "message": {
+		"ruleId": finding["id"],
 		"level": "warning",
-		"text": finding["title"]},
+		"message": {"text": finding["title"]},
 		"locations": [{
 		"physicalLocation": {
 			"artifactLocation": {"uri": finding["file"]},

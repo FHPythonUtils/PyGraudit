@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pygraudit"
-version = "27.2.0"
+version = "27.2.1"
 description = "Python version of graudit by Wireghoul https://github.com/wireghoul/graudit"
 authors = ["FredHappyface"]
 classifiers = [
