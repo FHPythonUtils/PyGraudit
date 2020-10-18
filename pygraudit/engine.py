@@ -11,6 +11,7 @@ Functions return finding dictionary
 	line: int
 	col: int
 }
+```
 """
 from __future__ import annotations
 from typing import Union
@@ -76,7 +77,7 @@ def listFiles(startDirectory: str) -> list[str]:
 
 
 def filterFiles(startDirectory: str, files: list[str],
-ignorePaths: Union[list[str], None]=None) -> list[str]:
+ignorePaths: Union[list[str], None] = None) -> list[str]:
 	"""Remove files that are non text files and from hidden directories
 
 	Args:
@@ -101,8 +102,8 @@ ignorePaths: Union[list[str], None]=None) -> list[str]:
 	return outFiles
 
 
-def engine(startDirectory: str, db: str = "python", allFiles: bool=False,
-ignorePaths: Union[list[str], None]=None) -> list[Finding]:
+def engine(startDirectory: str, db: str = "python", allFiles: bool = False,
+ignorePaths: Union[list[str], None] = None) -> list[Finding]:
 	"""The engine entry point. Using a target startDirectory and a database, produce
 	a list of findings that we can throw into a formatter
 
@@ -129,7 +130,7 @@ ignorePaths: Union[list[str], None]=None) -> list[Finding]:
 				line = content.count("\n") + 1
 				col = len(content.splitlines()[-1].replace("\t", "    ")) + 1
 				findings.append({
-				"id": db + str(index),
+				"id": f"PYG.{db}.{index:03}",
 				"title": "Found match: " + str(match.group()).strip(),
 				"file": file.replace(startDirectory, ".").replace("\\", "/"),
 				"evidence": extractEvidence(line, file),

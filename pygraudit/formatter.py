@@ -31,7 +31,7 @@ import typing
 from pygraudit.types import Finding, Line
 
 
-def formatEvidence(evidence: list[Line], newlineChar: bool =True) -> str:
+def formatEvidence(evidence: list[Line], newlineChar: bool = True) -> str:
 	"""Format evidence to plaintext
 
 	Args:
@@ -47,9 +47,8 @@ def formatEvidence(evidence: list[Line], newlineChar: bool =True) -> str:
 	return "\\n".join(evidenceText)
 
 
-
-def markdown(findings: list[Finding],
-heading: typing.Optional[str] = None, colourMode: int=0) -> str:
+def markdown(findings: list[Finding], heading: typing.Optional[str] = None,
+colourMode: int = 0) -> str:
 	"""Format to Markdown
 
 	Args:
@@ -69,15 +68,14 @@ heading: typing.Optional[str] = None, colourMode: int=0) -> str:
 	# Details
 	for finding in findings:
 		strBuf.extend([
-		f"## {finding['title']}",
-		f"\n\nFile: `{finding['file']}`",
+		f"## {finding['title']}", f"\n\nFile: `{finding['file']}`",
 		f"\n\nLine: {finding['line']}\n\n```python\n{formatEvidence(finding['evidence'])}\n```",
 		])
 	return "\n".join(strBuf) + "\n"
 
 
-def json(findings: list[Finding],
-heading: typing.Optional[str] = None, colourMode: int=0) -> str:
+def json(findings: list[Finding], heading: typing.Optional[str] = None,
+colourMode: int = 0) -> str:
 	"""Format to Json
 
 	Args:
@@ -93,8 +91,8 @@ heading: typing.Optional[str] = None, colourMode: int=0) -> str:
 	return dumps(out, indent="\t")
 
 
-def csv(findings: list[Finding],
-heading: typing.Optional[str] = None, colourMode: int=0) -> str:
+def csv(findings: list[Finding], heading: typing.Optional[str] = None,
+colourMode: int = 0) -> str:
 	"""Format to CSV
 
 	Args:
@@ -108,18 +106,16 @@ heading: typing.Optional[str] = None, colourMode: int=0) -> str:
 	csvString = writer(output)
 	csvString.writerow([heading if heading is not None else \
 	"Findings - Findings below (you may want to delete this line)"])
-	csvString.writerow([
-	"id", "title", "file", "evidence", "line", "col"])
+	csvString.writerow(["id", "title", "file", "evidence", "line", "col"])
 	for finding in findings:
 		csvString.writerow([
 		finding["id"], finding["title"], finding["file"],
-		formatEvidence(finding["evidence"], False),
-		finding["line"], finding["col"]])
+		formatEvidence(finding["evidence"], False), finding["line"], finding["col"]])
 	return output.getvalue()
 
 
-def ansi(findings: list[Finding],
-heading: typing.Optional[str] = None, colourMode: int=0) -> str:
+def ansi(findings: list[Finding], heading: typing.Optional[str] = None,
+colourMode: int = 0) -> str:
 	"""Format to ansi
 
 	Args:
@@ -162,16 +158,54 @@ heading: typing.Optional[str] = None, colourMode: int=0) -> str:
 	f"{BLD}{UL}{CB}Findings{CLS}\n\n{TXT}List of findings\n"
 	strBuf = [heading]
 
-
 	# Details
 	for finding in findings:
 		evidence = [f"{TXT}┌{' ' + finding['file'] + ' ':─^85}┐"]
 		for line in finding['evidence']:
-			evidence.append((CODE if line["selected"] else f"{TXT}│") +f"{str(line['line'])[:3]: >3}  {line['content'][:80]: <80}{CLS}{TXT}│")
+			evidence.append((CODE if line["selected"] else f"{TXT}│") +
+			f"{str(line['line'])[:3]: >3}  {line['content'][:80]: <80}{CLS}{TXT}│")
 		evidence.append(f"└{'─'*85}┘")
 		evidenceStr = '\n'.join(evidence)
-		strBuf.extend([
-		f"{BLD}{UL}{CG}{finding['title']}{CLS}",
-		f"{evidenceStr}\n",
-		])
+		strBuf.extend([f"{BLD}{UL}{CG}{finding['title']}{CLS}", f"{evidenceStr}\n"])
 	return "\n".join(strBuf) + f"{CLS}"
+
+
+def sarif(findings: list[Finding], heading: typing.Optional[str] = None,
+colourMode: int = 0) -> str:
+	"""Format to sarif https://sarifweb.azurewebsites.net/
+
+	Args:
+		findings (list[Finding]): Findings to format
+		heading (str, optional): Optional heading to include. Defaults to None.
+
+	Returns:
+		str: String to write to a file of stdout
+	"""
+	out = {
+	"version": "2.1.0",
+	"$schema": "https://docs.oasis-open.org/sarif/sarif/v2.1.0/cos02/schemas/sarif-schema-2.1.0.json",
+	"runs": [{
+	"tool": {"driver": {
+		"name": "PyGraudit",
+		"informationUri": "https://github.com/FHPythonUtils/PyGraudit",
+		"version": "27.*", }},
+	"results": [{
+		"ruleId": finding["id"], "message": {
+		"level": "warning",
+		"text": finding["title"]},
+		"locations": [{
+		"physicalLocation": {
+			"artifactLocation": {"uri": finding["file"]},
+			"region": {
+				"startLine": finding["line"], "startColumn": finding["col"],
+				"snippet": {
+				"text": "".join([line["content"] for line in finding["evidence"] if line["selected"]])
+				}},
+			"contextRegion": {
+				"startLine": finding["evidence"][0]["line"],
+				"endLine": finding["evidence"][-1]["line"],
+				"snippet": {"text": "\n".join([line["content"] for line in finding["evidence"]])}}
+		}}]
+	} for finding in findings]
+	}]} # yapf: disable
+	return dumps(out, indent="\t")

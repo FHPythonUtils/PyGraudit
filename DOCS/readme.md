@@ -1,16 +1,11 @@
-Module pygraudit
-================
-Python version of graudit by Wireghoul https://github.com/wireghoul/graudit
+# Pygraudit Modules
 
-Sub-modules
------------
-* pygraudit.engine
-* pygraudit.formatter
-* pygraudit.types
+> Auto-generated documentation modules index.
 
-Functions
----------
+Full list of [Pygraudit](#pygraudit-index) project modules.
 
-    
-`cli()`
-:   cli entry point
+- [Pygraudit Index](#pygraudit-index)
+- [pygraudit](pygraudit/index.md#pygraudit)
+    - [\_\_main\_\_](pygraudit/module.md#__main__)
+    - [engine](pygraudit/engine.md#engine)
+    - [types](pygraudit/types.md#types)

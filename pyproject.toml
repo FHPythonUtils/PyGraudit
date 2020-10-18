@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pygraudit"
-version = "27.1.1"
+version = "27.2.0"
 description = "Python version of graudit by Wireghoul https://github.com/wireghoul/graudit"
 authors = ["FredHappyface"]
 classifiers = [
@@ -33,7 +33,7 @@ pygraudit = 'pygraudit:cli'
 
 [tool.poetry.dependencies]
 python = "^3.7"
-regex = "^2020.10.11"
+regex = "<2022,>=2020.10.11"
 
 
 [build-system]

@@ -15,7 +15,7 @@ THISDIR = str(Path(__file__).resolve().parent)
 DB_FILES = [file.replace(".db", "") for file in os.listdir(THISDIR + "/signatures/")
 if file.endswith(".db")]
 
-FORMAT_HELP = "Output format. One of ansi, json, markdown, csv. default=ansi"
+FORMAT_HELP = "Output format. One of ansi, json, markdown, csv, sarif. default=ansi"
 DB_HELP = f"db to use. One of {DB_FILES}. Default=python"
 
 BANNER = """====================================================================
@@ -66,7 +66,7 @@ def cli():
 	# Format
 	formatMap = {
 	"json": formatter.json, "markdown": formatter.markdown, "csv": formatter.csv,
-	"ansi": formatter.ansi}
+	"ansi": formatter.ansi, "sarif": formatter.sarif}
 	if args.format is None:
 		formatt = formatter.ansi
 	elif args.format in formatMap:
