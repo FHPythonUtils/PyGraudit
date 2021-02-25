@@ -1,13 +1,12 @@
 [![GitHub top language](https://img.shields.io/github/languages/top/FHPythonUtils/PyGraudit.svg?style=for-the-badge)](../../)
-[![Codacy grade](https://img.shields.io/codacy/grade/[codacy-proj-id].svg?style=for-the-badge)](https://www.codacy.com/manual|gh/FHPythonUtils/PyGraudit)
 [![Repository size](https://img.shields.io/github/repo-size/FHPythonUtils/PyGraudit.svg?style=for-the-badge)](../../)
 [![Issues](https://img.shields.io/github/issues/FHPythonUtils/PyGraudit.svg?style=for-the-badge)](../../issues)
 [![License](https://img.shields.io/github/license/FHPythonUtils/PyGraudit.svg?style=for-the-badge)](/LICENSE.md)
 [![Commit activity](https://img.shields.io/github/commit-activity/m/FHPythonUtils/PyGraudit.svg?style=for-the-badge)](../../commits/master)
 [![Last commit](https://img.shields.io/github/last-commit/FHPythonUtils/PyGraudit.svg?style=for-the-badge)](../../commits/master)
-[![PyPI Downloads](https://img.shields.io/pypi/dm/pygraudit.svg?style=for-the-badge)](https://pypi.org/project/pygraudit/)
-[![PyPI Version](https://img.shields.io/pypi/v/pygraudit.svg?style=for-the-badge)](https://pypi.org/project/pygraudit/)
-
+[![PyPI Downloads](https://img.shields.io/pypi/dm/pygraudit.svg?style=for-the-badge)](https://pypistats.org/packages/pygraudit)
+[![PyPI Total Downloads](https://img.shields.io/badge/dynamic/json?style=for-the-badge&label=total%20downloads&query=%24.total_downloads&url=https%3A%2F%2Fapi.pepy.tech%2Fapi%2Fprojects%2Fpygraudit)](https://pepy.tech/project/pygraudit)
+[![PyPI Version](https://img.shields.io/pypi/v/pygraudit.svg?style=for-the-badge)](https://pypi.org/project/pygraudit)
 
 <!-- omit in toc -->
 # PyGraudit
@@ -22,10 +21,26 @@ other static analysis applications like RATS, SWAAT and flaw-finder while
 keeping the technical requirements to a minimum and being very flexible.
 
 
-- [Install With PIP](#install-with-pip)
 - [Usage](#usage)
 - [Databases](#databases)
 - [Credits](#credits)
+- [Documentation](#documentation)
+- [Install With PIP](#install-with-pip)
+- [Language information](#language-information)
+	- [Built for](#built-for)
+- [Install Python on Windows](#install-python-on-windows)
+	- [Chocolatey](#chocolatey)
+	- [Download](#download)
+- [Install Python on Linux](#install-python-on-linux)
+	- [Apt](#apt)
+- [How to run](#how-to-run)
+	- [With VSCode](#with-vscode)
+	- [From the Terminal](#from-the-terminal)
+- [Download Project](#download-project)
+	- [Clone](#clone)
+		- [Using The Command Line](#using-the-command-line)
+		- [Using GitHub Desktop](#using-github-desktop)
+	- [Download Zip File](#download-zip-file)
 - [Community Files](#community-files)
 	- [Licence](#licence)
 	- [Changelog](#changelog)
@@ -34,15 +49,6 @@ keeping the technical requirements to a minimum and being very flexible.
 	- [Security](#security)
 	- [Support](#support)
 	- [Rationale](#rationale)
-
-
-## Install With PIP
-
-```python
-pip install pygraudit
-```
-
-Head to https://pypi.org/project/pygraudit/ for more info
 
 
 ## Usage
@@ -112,13 +118,80 @@ The following databases are included:
   - strings
   - xss
 
-
-
 ## Credits
 
   - Wireghoul - http://www.justanotherhacker.com
   - Various others - see Changelog
 
+## Documentation
+See the [Docs](/DOCS/) for more information.
+
+## Install With PIP
+```python
+pip install pygraudit
+```
+
+Head to https://pypi.org/project/pygraudit/ for more info
+
+## Language information
+### Built for
+This program has been written for Python 3 and has been tested with
+Python version 3.9.0 <https://www.python.org/downloads/release/python-380/>.
+
+## Install Python on Windows
+### Chocolatey
+```powershell
+choco install python
+```
+### Download
+To install Python, go to <https://www.python.org/> and download the latest
+version.
+
+## Install Python on Linux
+### Apt
+```bash
+sudo apt install python3.9
+```
+
+## How to run
+### With VSCode
+1. Open the .py file in vscode
+2. Ensure a python 3.9 interpreter is selected (Ctrl+Shift+P > Python:Select
+Interpreter > Python 3.9)
+3. Run by pressing Ctrl+F5 (if you are prompted to install any modules, accept)
+### From the Terminal
+```bash
+./[file].py
+```
+
+## Download Project
+### Clone
+#### Using The Command Line
+1. Press the Clone or download button in the top right
+2. Copy the URL (link)
+3. Open the command line and change directory to where you wish to
+clone to
+4. Type 'git clone' followed by URL in step 2
+```bash
+$ git clone https://github.com/FHPythonUtils/PyGraudit
+```
+
+More information can be found at
+<https://help.github.com/en/articles/cloning-a-repository>
+
+#### Using GitHub Desktop
+1. Press the Clone or download button in the top right
+2. Click open in desktop
+3. Choose the path for where you want and click Clone
+
+More information can be found at
+<https://help.github.com/en/desktop/contributing-to-projects/cloning-a-repository-from-github-to-github-desktop>
+
+### Download Zip File
+
+1. Download this GitHub repository
+2. Extract the zip archive
+3. Copy/ move to the desired location
 
 ## Community Files
 ### Licence
