@@ -1,8 +1,3 @@
-====================== No Longer Supported (Soon) =====================
-
-**This project has reached the end of development and will be no longer
-supported once removed from `simplesecurity`**
-
 ========================= No Longer Supported =========================
 
 **This project has reached the end of development and is no longer
